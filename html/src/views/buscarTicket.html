@@ -1,0 +1,342 @@
+﻿<input type="hidden" id="accion" value="ListarTickets"/>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>{{usuario.nombre_sistema}}</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-store" />
+
+<!--
+<link rel="icon" href="favicon.ico">
+-->
+
+<style>
+#area{
+	background-color:#efefef;
+	width:90%;	
+	height:100%;
+	padding:20px;
+	box-shadow: 0px 0px 8px #555555;	
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #87BA41;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #87BA41;
+}
+
+.navbar-inverse {
+    background-color: #222;
+    border-color: #2e74c2;
+}
+
+.mi-tabla th {
+    background: #2e74c2;
+    color: #fff;
+    padding: 5px;
+    border: 3px solid #fff;
+    font-size: 12px;
+    font-variant: small-caps;
+}
+
+
+
+
+
+
+
+
+.content-header {
+  position: relative;
+  padding: 0px 0px 0px 0px;
+}
+.content-header > h1 {
+  margin: 0;
+  font-size: 28px;
+}
+.content-header > h1 > small {
+  font-size: 15px;
+  display: inline-block;
+  padding-left: 4px;
+  font-weight: 300;
+}
+.content-header > .breadcrumb {
+  float: right;
+  background: transparent;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  padding: 7px 5px;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  border-radius: 2px;
+}
+.content-header > .breadcrumb > li > a {
+  color: #444;
+  text-decoration: none;
+  display: inline-block;
+}
+.content-header > .breadcrumb > li > a > .fa,
+.content-header > .breadcrumb > li > a > .glyphicon,
+.content-header > .breadcrumb > li > a > .ion {
+  margin-right: 5px;
+}
+.content-header > .breadcrumb > li + li:before {
+  content: '>\00a0';
+}
+@media (max-width: 991px) {
+  .content-header > .breadcrumb {
+    position: relative;
+    margin-top: 5px;
+    top: 0;
+    right: 0;
+    float: none;
+    background: #d2d6de;
+    padding-left: 10px;
+  }
+  .content-header > .breadcrumb li:before {
+    color: #97a0b3;
+  }
+}
+
+
+
+
+
+
+
+</style>
+
+
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #2e74c2;">
+        <div class="navbar-inner">
+            <h1 style="color:#FFF; font-size:25px; padding-left:10px">CONTROL DE ESTACIONAMIENTO Ver. 1.0</h1>
+        </div>
+    </div>
+    
+    <section id="area" class="container-fluid">
+    
+        <br><br><br>
+       
+				<section class="content-header">
+		      <h1>
+		        <div class="top-datos_usuario">Usuario: {{sesionUsuario.nombre}}, {{sesionUsuario.rut}}</div>
+	          <!--<div class="top-datos_usuario">Perfil: {{sesionUsuario.perfil}}, {{sesionUsuario.centro_operacion}}</div>-->
+	          <div class="top-datos_usuario">Perfil: {{sesionUsuario.perfil}}</div> 
+	          <div class="top-datos_usuario">Estacionamiento: {{CentroOperacion}}</div>
+		      </h1>
+		      <ol class="breadcrumb">
+		        <li><a href="#inicio"><i class="fa fa-home"></i> Inicio</a></li>
+		        <li class="active">Buscar Ticket</li>
+		      </ol>
+		    </section>
+					    
+        
+        <div id="line-dotted" style="padding-bottom:10px"></div>
+        
+        <!--<form role="form" name="formListadoUser" ng-model="formListadoUser">-->
+        <form role="form" name="formListado" ng-model="formListado">
+        
+        <br><br>
+           
+	            <div class="panel panel-success" style="border-color: #cfcfd0; ">
+	            	<div class="panel-heading" style="background-color:#a20101; color:#ffffff; text-align:center;"><b>Buscar Ticket</b></div>
+	              <div class="panel-body"> 
+	                	
+	                	
+	                	
+	                	<!--
+	                	<div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                        <div class='select-group' style="width:100%;float:right;position:relative; padding-top:20px">
+                            <select ng-options="item.id_lugar_evento as item.nombre_lugar_evento for item in lugarEvento" ng-change="cargarAfectado(this.cmbLugarEvento)" class="form-control" name="cmbLugarEvento" id="cmbLugarEvento" ng-model="cmbLugarEvento" required>
+                                <option value="">Seleccionar Estacionamiento</option>
+                            </select>
+                        </div>
+                    </div>
+                    -->
+                    
+                    
+                    
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                        <div class='select-group' style="width:100%;float:right;position:relative; padding-top:20px">
+			                    <select class="form-control" name="cmbLugarEvento" id="cmbLugarEvento">
+			                        <option value="0">Seleccionar Estacionamiento</option>
+			                        <option ng-selected="{{centroOperacion.ID_CENTRO_OPERACION == centroOperacionPorDefecto}}" ng:repeat="centroOperacion in centroOperacion" value="{{centroOperacion.ID_CENTRO_OPERACION}}">{{centroOperacion.NOMBRE_CENTRO_OPERACION}}</option>
+			                    </select>
+                   			</div>
+                   </div>
+                    
+                   
+                    
+	                	<div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                      <div class="input-group date">
+                          <input type="text" class="form-control" name="txtFechaEvento" id="txtFechaEvento" required>
+                          <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                      </div>
+	                    
+	                    <script type="text/javascript">
+	                        $(function(){
+	                            $('#txtFechaEvento').datetimepicker({
+	                            	  defaultDate: Date.now(),
+	                                locale: 'es',
+	                                format: 'L'
+	                            });
+	                        });
+	                    </script>
+                    </div>
+                    
+                    
+                    
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                      <div class="input-group" style="width:100%;float:right;position:relative;">
+				                 <input type="text" style="text-transform: uppercase;" id="txtBusqueda" name="txtBusqueda" class="form-control" ng-change="filter()" placeholder="Busqueda..." ng-model="searchTicket">
+				                 
+				                <span class="input-group-addon">
+				                    <span class="glyphicon glyphicon-search"></span>
+				                </span>
+				            	</div>
+                    </div>
+           	
+           	
+           	
+           	
+           	
+           					<!--
+           					<div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                      <div class="input-group" style="width:100%;float:right;position:relative;">
+				                 <button id="btnActualizar" class="btn btn-success">Actualizar</button> 
+				            	</div>
+                    </div>
+                    -->
+                    
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+						      		<!--<label class="message">Todos los campos marcados con un asterisco (*) son obligatorios.</label>-->
+						      	</div>
+                    
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group">
+												<button id="btnVolver" type="button" ng-click="Volver()" class="btn btn-primary form-control">Volver</button>
+						        </div>
+                    
+                    <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                    	<div style="width:100%">
+				                 <button id="btnActualizar" class="btn btn-success form-control">Actualizar</button> 
+				              </div>   
+                    </div>
+                    
+                    
+                 
+               
+    
+                    
+	                	
+	                	<div class="col-md-12 col-sm-12 col-xs-12 form-group">
+		                <table id="tablaEventos" class="mi-tabla">
+		                <thead>
+		                    <tr>
+		                    		<!--
+		                    		<th style="width:40px; text-align:center;"></th>
+		                    		-->
+		                    		
+		                        <th ng-click="sortType = 'ID_TICKET*1'; sortReverse = !sortReverse" ng-if="sesionUsuario.id_perfil == 1">
+		                        	ID_TICKET
+		                            <span ng-show="sortType == 'ID_TICKET*1' && !sortReverse" class="headerSortDown"></span>
+		                    				<span ng-show="sortType == 'ID_TICKET*1' && sortReverse" class="headerSortUp"></span>
+		                        </th>
+		                        <th ng-click="sortType = 'PATENTE*1'; sortReverse = !sortReverse">
+		                        	PATENTE
+		                            <span ng-show="sortType == 'PATENTE*1' && !sortReverse" class="headerSortDown"></span>
+		                    				<span ng-show="sortType == 'PATENTE*1' && sortReverse" class="headerSortUp"></span>
+		                        </th>
+		                        <th ng-click="sortType = 'FECHA'; sortReverse = !sortReverse">
+		                        	FECHA
+		                            <span ng-show="sortType == 'FECHA' && !sortReverse" class="headerSortDown"></span>
+		                    				<span ng-show="sortType == 'FECHA' && sortReverse" class="headerSortUp"></span>
+		                        </th>
+		                        
+		                        <th ng-click="sortType = 'HORA'; sortReverse = !sortReverse">
+		                        	HORA
+		                            <span ng-show="sortType == 'HORA' && !sortReverse" class="headerSortDown"></span>
+		                    				<span ng-show="sortType == 'HORA' && sortReverse" class="headerSortUp"></span>
+		                        </th>
+		                        
+		                        
+		                    </tr>
+		                </thead>
+		                                    
+		                <tbody>
+		                	<tr style="cursor:pointer" ng-style="(ticket.ESTADO_TICKET == 0 || ticket.ESTADO_TICKET == 2) && {color:'red'} || ticket.ESTADO_TICKET == 1 && {color:'black'} || ticket.ESTADO_TICKET == 3 && {color:'green'}" ng-repeat="ticket in searched = (ticket | filter:searchTicket | orderBy : base :reverse) | beginning_data:(current_grid-1)*data_limit['label'] | limitTo:data_limit['label']">
+		
+		                		<td ng-click="IraEditarTicket(ticket.ID_INGRESO)" data-head="ID" ng-if="sesionUsuario.id_perfil == 1">{{ticket.ID_INGRESO}}<input type="hidden" name="id_ticket" id="id_ticket" ng-model="ticket.ID_TICKET"></td>
+		                    <td ng-click="IraEditarTicket(ticket.ID_INGRESO)" data-head="PATENTE">{{ticket.PATENTE_INGRESO | uppercase}}</td> 
+		                    <td ng-click="IraEditarTicket(ticket.ID_INGRESO)" data-head="FECHA">{{ticket.FECHA_INGRESO}}</td> 
+		                    <td ng-click="IraEditarTicket(ticket.ID_INGRESO)" data-head="HORA">{{ticket.HORA_INGRESO}} Hrs.</td>
+		                    
+		                  </tr>
+		                </tbody>
+		            		</table>   
+		            		
+		            		
+		            		   
+	                	</div>
+	   
+	            
+	            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+		            <div class="pull-right" style="font-weight:bold">Se encontraron {{searched.length}} de {{entire_user}} registros</div>   
+								
+								<!--
+								<div>Vista <select ng-model="data_limit" ng-options="opt as opt.label for opt in options"></select> registros.</div>
+		            <div><pagination total-items="filter_data" ng-model="current_grid" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="data_limit['label']"></pagination></div>
+		            -->
+		                                              
+              </div>
+              
+              
+              <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+
+		            <div id="mensaje"></div>
+		                                                                       
+              </div>
+             
+             	
+             
+            </div>
+            
+            </div>
+            
+            
+            
+        </form>  
+        
+        <!--
+        <p style="padding-top:3px">
+			  	<label class="message">Desarrollado para Estacionamientos...., por Soluciones Informáticas JGB</label>
+			  	<label class="message" style="margin: 0 0 0 0;">je.gacituab@gmail.com, +56987800185</label>
+				</p>
+        -->
+         
+    </section>
+	
+</body>
+</html>

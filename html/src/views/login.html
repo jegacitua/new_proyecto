@@ -1,0 +1,205 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<style>
+#area{
+	background-color:#efefef;
+	width:90%;	
+	height:100%;
+	padding:20px;
+	box-shadow: 0px 0px 8px #555555;	
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #87BA41;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #87BA41;
+}
+
+.navbar-inverse {
+    background-color: #222;
+    border-color: #2e74c2;
+}
+
+</style>
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #2e74c2;">
+      <div class="navbar-inner">
+          <h1 style="color:#FFF; font-size:25px; padding-left:10px">CONTROL DE ESTACIONAMIENTOS Ver. 1.0</h1>
+      </div>
+    </div>
+   
+   
+  <section style="padding:50px"> 
+   
+    <form class="register-form form" name="formRegistra" id="register" ng-submit="SolicitaCuenta(formRegistra)" ng-validate="validaSolicitaCuenta" hidden novalidate>
+        <div class="form-group">
+            <h1 style="color:black; font-size:30px;">SOLICITUD CUENTA DE USUARIO</h1>
+        </div>
+        
+        <div class="form-group" style="text-align:left" ng-class="{'has-error':formRegistra.txtRutSolicita.$invalid && formRegistra.txtRutSolicita.$touched, 'has-success':formRegistra.txtRutSolicita.$valid && formRegistra.txtRutSolicita.$touched}">
+            <input type="text" id="txtRutSolicita" data-ng-model="txtRutSolicita" name="txtRutSolicita" placeholder="Rut" ng-keypress="verificarRut()" required>            
+        </div>
+        
+        <div class="form-group" style="text-align:left" ng-class="{'has-error':formRegistra.txtNombresSolicita.$invalid && formRegistra.txtNombresSolicita.$touched, 'has-success':formRegistra.txtNombresSolicita.$valid && formRegistra.txtNombresSolicita.$touched}">
+            <input type="text" id="txtNombresSolicita" data-ng-model="txtNombresSolicita" name="txtNombresSolicita" placeholder="Nombres" required>            
+        </div>
+        <!--<input type="text" id="txtNombresSolicita" placeholder="Nombres"/>-->
+        
+        <div class="form-group" style="text-align:left" ng-class="{'has-error':formRegistra.txtApellidoPaternoSolicita.$invalid && formRegistra.txtApellidoPaternoSolicita.$touched, 'has-success':formRegistra.txtApellidoPaternoSolicita.$valid && formRegistra.txtApellidoPaternoSolicita.$touched}">
+            <input type="text" id="txtApellidoPaternoSolicita" data-ng-model="txtApellidoPaternoSolicita" name="txtApellidoPaternoSolicita" placeholder="Apellido Paterno" required>            
+        </div>
+        <!--<input type="text" id="txtApellidoPaternoSolicita" placeholder="Apellido Paterno"/>-->
+        
+        <div class="form-group" style="text-align:left" ng-class="{'has-error':formRegistra.txtApellidoMaternoSolicita.$invalid && formRegistra.txtApellidoMaternoSolicita.$touched, 'has-success':formRegistra.txtApellidoMaternoSolicita.$valid && formRegistra.txtApellidoMaternoSolicita.$touched}">
+            <input type="text" id="txtApellidoMaternoSolicita" data-ng-model="txtApellidoMaternoSolicita" name="txtApellidoMaternoSolicita" placeholder="Apellido Materno" required>            
+        </div>
+        <!--<input type="text" id="txtApellidoMaternoSolicita" placeholder="Apellido Materno"/>-->
+        
+        <div class="form-group" style="text-align:left" ng-class="{'has-error':formRegistra.txtPasswordSolicita.$invalid && formRegistra.txtPasswordSolicita.$touched, 'has-success':formRegistra.txtPasswordSolicita.$valid && formRegistra.txtPasswordSolicita.$touched}">
+            <input type="password" data-ng-model="txtPasswordSolicita" name="txtPasswordSolicita" id="txtPasswordSolicita" placeholder="Contrase&ntilde;a" required>            
+        </div>
+        <!--<input type="password" id="txtPasswordSolicita" placeholder="Contraseña"/>-->
+        
+        <div class="form-group" style="text-align:left" ng-class="{'has-error':formRegistra.txtRepitaPasswordSolicita.$invalid && formRegistra.txtRepitaPasswordSolicita.$touched, 'has-success':formRegistra.txtRepitaPasswordSolicita.$valid && formRegistra.txtRepitaPasswordSolicita.$touched}">
+            <input type="password" data-ng-model="txtRepitaPasswordSolicita" name="txtRepitaPasswordSolicita" id="txtRepitaPasswordSolicita" placeholder="Repita contrase&ntilde;a" required>            
+        </div>
+        <!--<input type="password" id="txtRepitaPasswordSolicita" placeholder="Repita Contraseña"/>-->
+        
+        <div class="form-group" style="text-align:left" ng-class="{'has-error':formRegistra.txtEmailSolicita.$invalid && formRegistra.txtEmailSolicita.$touched, 'has-success':formRegistra.txtEmailSolicita.$valid && formRegistra.txtEmailSolicita.$touched}">
+            <input type="text" id="txtEmailSolicita" data-ng-model="txtEmailSolicita" name="txtEmailSolicita" placeholder="Email" required>            
+        </div>
+        <!--<input type="text" id="txtEmailSolicita" placeholder="Email"/>-->
+        
+        
+        
+        
+        <button style="font-weight: bold; background-color:#2e74c2" validation-submit="formRegistra">CREAR</button>
+        <!--<p class="message">Ya tienes cuenta? <a style="cursor:pointer; color:#4171BB">Iniciar Sesión</a></p>-->
+             
+        <label class="message" id="inicia">Ya tienes cuenta? <a style="cursor:pointer">Iniciar Sesión</a></label>
+    </form>
+   
+   
+   
+   
+   
+   
+   
+    <form class="recupera_pass form" name="formRecupera" id="recupera" ng-submit="RestableceCuenta(formRecupera)" ng-validate="validaRestableceCuenta" hidden novalidate>
+        <div class="form-group">
+            <h1 style="color: black; font-size:30px;">RESTABLECER CONTRASEÑA</h1>
+        </div>        
+        
+        <div class="form-group" style="text-align:left" ng-class="{'has-error':formRecupera.txtEmailRestablece.$invalid && formRecupera.txtEmailRestablece.$touched, 'has-success':formRecupera.txtEmailRestablece.$valid && formRecupera.txtEmailRestablece.$touched}">
+            <input type="text" id="txtEmailRestablece" data-ng-model="txtEmailRestablece" name="txtEmailRestablece" placeholder="Email" required>            
+        </div>
+        <!--<input type="text" id="txtEmail" placeholder="E-mail">-->
+        
+        <button style="font-weight: bold; background-color: #2e74c2" validation-submit="formRecupera">ENVIAR</button>  
+        <label class="message" id="recupera_contra">Ya tienes cuenta? <a style="cursor:pointer">Iniciar Sesión</a></label>
+     </form>
+       
+       
+       
+       
+       
+       
+       
+       
+    <!--<form class="form" id="loguea" ng-submit="entrar(formLogin)" ng-validate="validationOptions" ng-model="formLogueo" novalidate>-->
+    <form class="form" name="formLogin" id="loguea" ng-submit="entrar(formLogin)" ng-validate="validationOptions" ng-model="formLogueo" novalidate>            
+        <div class="form-group">
+            <h1 style="color:black; font-size:30px;">INICIAR SESION</h1>
+        </div>
+                           
+        <div class="form-group" style="text-align:left" ng-class="{'has-error':formLogin.txtRut.$invalid && formLogin.txtRut.$touched, 'has-success':formLogin.txtRut.$valid && formLogin.txtRut.$touched}">
+            <input type="text" id="txtRut" data-ng-model="txtRut" name="txtRut" placeholder="Rut" ng-keypress="verificarRut()" required autofocus>
+            <!--<input type="text" id="txtRut" data-ng-model="txtRut" name="txtRut" class="form-control" placeholder="Rut" required autofocus>-->
+        </div>
+        <div class="form-group" style="text-align:left" ng-class="{'has-error':formLogin.txtPassword.$invalid && formLogin.txtPassword.$touched, 'has-success':formLogin.txtPassword.$valid && formLogin.txtPassword.$touched}">
+            <input type="password" data-ng-model="txtPassword" name="txtPassword" id="txtPassword" placeholder="Contrase&ntilde;a" required>            
+        </div>    
+        
+        <button style="font-weight: bold; background-color:#2e74c2" validation-submit="formLogin">ENTRAR</button>      
+        
+        <p style="padding-top:3px">
+            <!--
+            <label class="message">¿No tienes cuenta de Usuario? <a id="crea" style="cursor:pointer">Solicitar Cuenta</a></label>
+            <label class="message" style="margin: 0 0 0 0;">¿Olvidaste tu contraseña? <a id="rec" style="cursor:pointer; color:#4171BB">Restablecer contraseña</a></label>
+            -->
+            
+            <!--<label class="message">¿Olvidaste tu contraseña? <a id="rec" style="cursor:pointer; color:#4171BB">Restablecer contraseña</a></label>-->
+            
+        </p>
+        
+        <!--
+        <p style="padding-top:3px">
+            <label class="message">Aplicación Desarrollada para ENEX Chile</label>
+            <!--<label class="message" style="margin: 0 0 0 0;">je.gacituab@gmail.com, +56987800185</label>
+        </p>
+        -->
+        
+    </form>
+    
+    
+    
+    <div id="mensaje"></div>
+  
+  </section>
+ 
+  <script>
+  
+		  	/*
+		  	$('.message a').click(function(){
+				   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");		   
+				});
+		  	*/
+		  
+		 
+		    $('#crea').click(function(){		        
+		        $('#register').animate({height: "toggle", opacity: "toggle"}, "slow");     
+		        $('#loguea').hide();      
+		    });
+		    
+
+		    
+		 		
+		    $('#inicia').click(function(){
+		        $('#loguea').animate({height: "toggle", opacity: "toggle"}, "slow");               
+		        $('#register').hide();
+		        $('#recupera').hide();
+		        
+		        
+		    });
+		    
+		    
+		    
+		    $('#rec').click(function(){
+		        $('#recupera').animate({height: "toggle", opacity: "toggle"}, "slow");     
+		        $('#loguea').hide();
+		        $('#register').hide();
+		    });
+		    
+		    
+		    
+		    
+		    $('#recupera_contra').click(function(){
+		        $('#loguea').animate({height: "toggle", opacity: "toggle"}, "slow"); 
+		        $('#recupera').hide();
+		    });
+		   
+    </script>    
+   
+</body>

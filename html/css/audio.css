@@ -1,0 +1,66 @@
+.link {
+	    color: #4C4545;
+	    font-weight: bold;
+	    font-size: 14px;
+	    text-decoration: none;
+	    text-transform: none;
+	    display: block;
+	    padding: 10px 0 05px 34px;
+	    background: url(../images/music.png) no-repeat 12px 10px;
+}
+
+.item-artist {
+	    margin-left: 36px;
+	    font-size: 12px;
+	    font-style: italic;
+	    margin-top: 2px;
+}
+
+.link-item_player {
+	    width: 200px;
+	    height: 30px;
+	    padding-top: 10px;
+	    margin-right: 10px;
+	    float: right;
+}
+
+table {
+	    border-collapse: collapse;
+	    width: 100%;
+}
+
+th, td {
+	    text-align: left;
+	    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+	    background-color: #4CAF50;
+	    color: white;
+}
+
+audio {
+        -webkit-transition:all 0.5s linear;
+		-moz-transition:all 0.5s linear;
+		-o-transition:all 0.5s linear;
+		transition:all 0.5s linear;
+		-moz-box-shadow: 2px 2px 4px 0px #006773;
+		-webkit-box-shadow:  2px 2px 4px 0px #006773;
+		box-shadow: 2px 2px 4px 0px #006773;
+		-moz-border-radius:7px 7px 7px 7px ;
+		-webkit-border-radius:7px 7px 7px 7px ;
+		border-radius:7px 7px 7px 7px ;
+		width: 200px;
+		display: block
+}
+
+audio:hover, audio:focus, audio:active {
+		-webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+		-moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+		box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4);
+		-webkit-transform: scale(1.05);
+		-moz-transform: scale(1.05);
+		transform: scale(1.05);
+}

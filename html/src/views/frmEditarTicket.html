@@ -1,0 +1,399 @@
+<input type="hidden" id="accion" value="EditarEvento"/>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>{{usuario.nombre_sistema}}</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-store" />
+
+<link rel="icon" href="favicon.ico">
+
+<style>
+#area{
+	background-color:#efefef;
+	width:90%;	
+	height:100%;
+	padding:20px;
+	box-shadow: 0px 0px 8px #555555;	
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #87BA41;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #87BA41;
+}
+
+.navbar-inverse {
+    background-color: #222;
+    border-color: #2e74c2;
+}
+
+.mi-tabla th {
+    background: #2e74c2;
+    color: #fff;
+    padding: 5px;
+    border: 3px solid #fff;
+    font-size: 12px;
+    font-variant: small-caps;
+}
+
+
+
+
+
+
+
+
+
+
+
+.content-header {
+  position: relative;
+  padding: 0px 0px 0px 0px;
+}
+.content-header > h1 {
+  margin: 0;
+  font-size: 28px;
+}
+.content-header > h1 > small {
+  font-size: 15px;
+  display: inline-block;
+  padding-left: 4px;
+  font-weight: 300;
+}
+.content-header > .breadcrumb {
+  float: right;
+  background: transparent;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  padding: 7px 5px;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  border-radius: 2px;
+}
+.content-header > .breadcrumb > li > a {
+  color: #444;
+  text-decoration: none;
+  display: inline-block;
+}
+.content-header > .breadcrumb > li > a > .fa,
+.content-header > .breadcrumb > li > a > .glyphicon,
+.content-header > .breadcrumb > li > a > .ion {
+  margin-right: 5px;
+}
+.content-header > .breadcrumb > li + li:before {
+  content: '>\00a0';
+}
+@media (max-width: 991px) {
+  .content-header > .breadcrumb {
+    position: relative;
+    margin-top: 5px;
+    top: 0;
+    right: 0;
+    float: none;
+    background: #d2d6de;
+    padding-left: 10px;
+  }
+  .content-header > .breadcrumb li:before {
+    color: #97a0b3;
+  }
+}
+
+
+
+.btn-sample { 
+  color: #ffffff; 
+  background-color: #611BBD; 
+  border-color: #130269; 
+} 
+
+
+.message {
+    margin: 15px 0 0;
+    color: #8A888E;
+    font-size: 12px;
+}
+
+
+
+
+div.error {
+    border: 1px solid #cc0707;
+}
+
+
+
+</style>
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #2e74c2;">
+        <div class="navbar-inner">
+            <h1 style="color:#FFF; font-size:25px; padding-left:10px">CONTROL DE ESTACIONAMIENTO Ver. 1.0</h1>
+        </div>
+    </div>
+    
+    <section id="area" class="container-fluid">
+    
+        <br><br><br>
+
+				<section class="content-header">
+		      <h1>
+		        <div class="top-datos_usuario">Usuario: {{sesionUsuario.nombre}}, {{sesionUsuario.rut}}</div>
+	          <!--<div class="top-datos_usuario">Perfil: {{sesionUsuario.perfil}}, {{sesionUsuario.centro_operacion}}</div>-->
+	          <div class="top-datos_usuario">Perfil: {{sesionUsuario.perfil}}</div>
+	          <div class="top-datos_usuario">Estacionamiento: {{CentroOperacion}}</div>  
+		      </h1>
+		      <ol class="breadcrumb">
+		        <li><a href="#inicio"><i class="fa fa-home"></i> Inicio</a></li>
+		        <li><a href="#buscarTicket"> Buscar Ticket</a></li>
+		        <li class="active">Editar Ticket</li>
+		       <!--<li class="active">Nuevo Evento</li>-->
+		      </ol>
+		    </section>
+		
+		
+        
+        <div id="line-dotted" style="padding-bottom:10px"></div>
+
+        <!--<h3 class="anw anx">Crear Evento</h3>-->
+        
+
+        
+        <form style="padding:20px 0px 20px 0px" role="form" id="formEven" name="formEven" id="formEven" ng-submit="ingresarEvento(formEven)" ng-validate="validarFormEvento" ng-model="formEven" novalidate>
+           
+           <br>
+           
+            <div class="panel panel-success" style="border-color: #cfcfd0; ">
+            	<div class="panel-heading" style="background-color:#0a1f87; color:#ffffff; text-align:center;"><b>Editar Ticket</b></div>
+                <div class="panel-body"> 
+                 
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                      <label for="lblFechaInicio">(*) Fecha de Ingreso:</label>
+                      <!--<div class="input-group date" id="datetimepicker1">-->
+                      <div class="input-group date">
+                          <input type="text" class="form-control" name="txtFechaEntrada" id="txtFechaEntrada" disabled required>
+                          <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                      </div>
+	                    
+	                    <script type="text/javascript">
+	                        $(function(){
+	                            $('#txtFechaEntrada').datetimepicker({
+	                            	  defaultDate: Date.now(),
+	                                locale: 'es',
+	                                format: 'L'
+	                            });
+	                        });
+	                    </script>
+                    </div>
+                    
+                    
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                      <label for="txtHoraEntrada">(*) Hora de Entrada:</label>
+                      <div class="input-group date">
+                          <input type="text" class="form-control" name="txtHoraEntrada" id="txtHoraEntrada" disabled required>
+                          <span class="input-group-addon">
+                              <span class="glyphicon glyphicon-time"></span>
+                          </span>
+                      </div>
+	                
+	                    <script type="text/javascript">
+	                        $(function(){
+	                            $('#txtHoraEntrada').datetimepicker({
+	                            	  defaultDate: Date.now(),
+	                                format: 'HH:mm:ss'
+	                            });
+	                        });
+	                    </script>   
+                    </div>
+                    
+                    
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                        <div class='select-group'>
+                            <label>(*) Estacionamiento:</label>
+ 
+                          	<select class="form-control" name="cmbLugarEvento" id="cmbLugarEvento" ng-model="cmbLugarEvento">
+                                <option value="">Seleccionar Estacionamiento</option>
+                                <option ng-selected="{{centroOperacion.ID_CENTRO_OPERACION == centroOperacionPorDefecto}}" ng:repeat="centroOperacion in centroOperacion" value="{{centroOperacion.ID_CENTRO_OPERACION}}">{{centroOperacion.NOMBRE_CENTRO_OPERACION}}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                        <label>(*) Ingresar Patente:</label>
+                        <input type="text" style="text-transform: uppercase;" class="form-control" id="txtPatente" name="txtPatente" ng-model="txtPatente" required>
+                    </div>
+                    
+                    <!--
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                        <label>Observación:</label>
+                        <input type="text" style="text-transform: uppercase;" class="form-control" id="txtPatente" name="txtPatente" ng-model="txtPatente" required>
+                    </div>                                      
+										-->
+											
+            				<div class="col-md-12 col-sm-12 col-xs-12 form-group">
+		      		<label class="message">Todos los campos marcados con un asterisco (*) son obligatorios.</label>
+		      	</div>
+		      	
+		      	
+		      	
+		      	<!--
+		      	<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+            	<div style="width:100%">
+                 <button id="btnActualizar" class="btn btn-success form-control">Actualizar</button> 
+              </div>   
+            </div>
+            -->        
+                    
+		      	
+		      	<!--<div class="col-md-12 col-sm-12 col-xs-12 form-group" style="padding-top:10px">-->
+		      	<!--
+		      	<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+		      		<div style="width:100%">
+								<button id="btnVolver" type="button" ng-click="Volver()" class="btn btn-primary form-control">Volver</button>
+								<button id="btnGuardarEvento" type="submit" class="btn btn-danger form-control" ng-if="sesionUsuario.id_perfil == 1">Eliminar</button> 
+            		<button id="btnGuardarEvento" type="submit" class="btn btn-warning form-control">Actualizar</button> 
+            		<button id="btnGuardarEvento" type="submit" class="btn btn-primary form-control">Agregar Producto</button> 
+            		<button id="btnGuardarEvento" type="submit" class="btn btn-success form-control">Salida de Vehículo</button> 
+            	</div>
+		        </div>
+		        -->
+		        
+		        
+		        
+		        <!--
+		        <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+								<button style="" id="btnGuardarEvento" type="button" ng-click="Volver()" class="btn btn-primary form-control">Volver</button>
+								<button style="" id="btnGuardarEvento" type="submit" class="btn btn-danger form-control" ng-if="sesionUsuario.id_perfil == 1">Eliminar</button> 
+            		<button style="" id="btnGuardarEvento" type="submit" class="btn btn-warning form-control">Actualizar</button> 
+            		<button style="" id="btnGuardarEvento" type="submit" class="btn-sample form-control">Agregar Producto</button> 
+            		<button style="" id="btnGuardarEvento" type="submit" class="btn btn-success form-control">Salida de Vehículo</button> 
+		        </div>
+            -->
+            
+            
+            
+            
+            <div>
+								<div class="col-md-3 col-sm-12 col-xs-12 form-group" >
+									<button style="" id="btnGuardarEvento" type="button" ng-click="Volver()" class="btn btn-primary form-control">Volver</button>
+								</div>
+			
+								<div class="col-md-3 col-sm-12 col-xs-12 form-group" ng-if="sesionUsuario.id_perfil == 1">
+									<button style="" id="btnGuardarEvento" type="submit" class="btn btn-danger form-control float-right">Eliminar</button> 
+            		</div>
+            		
+            		<div class="col-md-3 col-sm-12 col-xs-12 form-group" >
+            			<button style="" id="btnGuardarEvento" type="submit" class="btn btn-warning form-control">Editar</button> 
+            		</div>
+            		<div class="col-md-3 col-sm-12 col-xs-12 form-group" >
+            			<button style=lg id="btnGuardarEvento" type="submit" class="btn-sample form-control">Agregar Producto</button> 
+            		</div>
+            		<div class="col-md-12 col-sm-12 col-xs-12 form-group" >
+            			<button style="" id="btnGuardarEvento" type="submit" class="btn btn-success form-control">Salida de Vehículo</button> 
+            		</div>	
+		        </div>
+		        
+		        
+		        
+		        
+		        
+            <br>
+            
+            
+            
+             <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+             	<br>
+             	<h4><span class="label label-default">ADICIONALES</span></h4>
+							<table id="tablaEventos" class="mi-tabla">
+								<thead>
+								  <tr>
+								  		<!--
+								  		<th style="width:40px; text-align:center;"></th>
+								  		-->
+								  		
+								      <th ng-click="sortType = 'PATENTE*1'; sortReverse = !sortReverse">
+								      	DESCRIPCION
+								          <span ng-show="sortType == 'PATENTE*1' && !sortReverse" class="headerSortDown"></span>
+								  				<span ng-show="sortType == 'PATENTE*1' && sortReverse" class="headerSortUp"></span>
+								      </th>
+								      <th ng-click="sortType = 'FECHA'; sortReverse = !sortReverse">
+								      	CANTIDAD
+								          <span ng-show="sortType == 'FECHA' && !sortReverse" class="headerSortDown"></span>
+								  				<span ng-show="sortType == 'FECHA' && sortReverse" class="headerSortUp"></span>
+								      </th>
+								      
+								      <th ng-click="sortType = 'HORA'; sortReverse = !sortReverse">
+								      	PRECIO
+								          <span ng-show="sortType == 'HORA' && !sortReverse" class="headerSortDown"></span>
+								  				<span ng-show="sortType == 'HORA' && sortReverse" class="headerSortUp"></span>
+								      </th>
+								      
+								      <th ng-click="sortType = 'HORA'; sortReverse = !sortReverse">
+								      	VALOR
+								          <span ng-show="sortType == 'HORA' && !sortReverse" class="headerSortDown"></span>
+								  				<span ng-show="sortType == 'HORA' && sortReverse" class="headerSortUp"></span>
+								      </th>
+								      
+								  </tr>
+								</thead>
+							                    
+							  <tbody>
+							  	<tr style="cursor:pointer" ng-style="(ticket.ESTADO_TICKET == 0 || ticket.ESTADO_TICKET == 2) && {color:'red'} || ticket.ESTADO_TICKET == 1 && {color:'black'} || ticket.ESTADO_TICKET == 3 && {color:'green'}" ng-repeat="ticket in searched = (ticket | filter:searchTicket | orderBy : base :reverse) | beginning_data:(current_grid-1)*data_limit['label'] | limitTo:data_limit['label']">
+							
+							  		<td ng-click="IraEditarTicket(ticket.ID_INGRESO)" data-head="ID" ng-if="sesionUsuario.id_perfil == 1">{{ticket.ID_INGRESO}}<input type="hidden" name="id_ticket" id="id_ticket" ng-model="ticket.ID_TICKET"></td>
+							      <td ng-click="IraEditarTicket(ticket.ID_INGRESO)" data-head="PATENTE">{{ticket.PATENTE_INGRESO | uppercase}}</td> 
+							      <td ng-click="IraEditarTicket(ticket.ID_INGRESO)" data-head="FECHA">{{ticket.FECHA_INGRESO}}</td> 
+							      <td ng-click="IraEditarTicket(ticket.ID_INGRESO)" data-head="HORA">{{ticket.HORA_INGRESO}} Hrs.</td>
+							      
+							    </tr>
+							  </tbody>
+							</table>   
+						</div>
+	                	
+	                	
+	          </div>
+            </div>      	
+            
+            
+
+      			
+		        
+		        <div id="mensaje"></div>
+    
+                
+        </form>
+        
+        
+        
+       
+	                	
+	                	
+	                	
+    </section>
+	
+</body>
+</html>   

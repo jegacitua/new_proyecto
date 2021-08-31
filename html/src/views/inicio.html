@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+<title>{{usuario.nombre_sistema}}</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+
+
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="no-store" />
+
+<link rel="icon" href="favicon.ico">
+
+
+
+<style>
+#area{
+	background-color:#efefef;
+	width:90%;	
+	height:100%;
+	padding:20px;
+	box-shadow: 0px 0px 8px #555555;	
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #87BA41;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: #87BA41;
+}
+
+.navbar-inverse {
+    background-color: #222;
+    border-color: #2e74c2;
+}
+
+.mi-tabla th {
+    background: #2e74c2;
+    color: #fff;
+    padding: 5px;
+    border: 3px solid #fff;
+    font-size: 12px;
+    font-variant: small-caps;
+}
+
+
+
+.content-header {
+  position: relative;
+  padding: 0px 0px 0px 0px;
+}
+.content-header > h1 {
+  margin: 0;
+  font-size: 28px;
+}
+.content-header > h1 > small {
+  font-size: 15px;
+  display: inline-block;
+  padding-left: 4px;
+  font-weight: 300;
+}
+.content-header > .breadcrumb {
+  float: right;
+  background: transparent;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 12px;
+  padding: 7px 5px;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  border-radius: 2px;
+}
+.content-header > .breadcrumb > li > a {
+  color: #444;
+  text-decoration: none;
+  display: inline-block;
+}
+.content-header > .breadcrumb > li > a > .fa,
+.content-header > .breadcrumb > li > a > .glyphicon,
+.content-header > .breadcrumb > li > a > .ion {
+  margin-right: 5px;
+}
+.content-header > .breadcrumb > li + li:before {
+  content: '>\00a0';
+}
+@media (max-width: 991px) {
+  .content-header > .breadcrumb {
+    position: relative;
+    margin-top: 5px;
+    top: 0;
+    right: 0;
+    float: none;
+    background: #d2d6de;
+    padding-left: 10px;
+  }
+  .content-header > .breadcrumb li:before {
+    color: #97a0b3;
+  }
+}
+
+
+.message {
+    margin: 15px 0 0;
+    color: #8A888E;
+    font-size: 12px;
+}
+
+
+
+</style>
+
+</head>
+<body>
+    
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #2e74c2;">
+      <div class="navbar-inner">
+          <h1 style="color:#FFF; font-size:25px; padding-left:10px">CONTROL DE ESTACIONAMIENTO Ver. 1.0</h1>
+      </div>
+    </div>
+    
+    <section id="area" class="container-fluid">
+    
+        <br><br><br>
+
+				
+				<section class="content-header">
+		      <h1>
+		        <div class="top-datos_usuario">Usuario: {{usuario.nombre}}, {{usuario.rut}}</div>
+	          <!--<div class="top-datos_usuario">Perfil: {{usuario.perfil}}, {{usuario.centro_operacion}}</div>-->
+	          <div class="top-datos_usuario">Perfil: {{usuario.perfil}}</div>
+	          <div class="top-datos_usuario">Estacionamiento: {{CentroOperacion}}</div> 
+	          
+	          <!--
+	          <select ng-options="item.id_tipo_evento as item.nombre_tipo_evento for item in tipoEvento"  class="form-control" name="cmbTipoEvento" id="cmbTipoEvento" ng-model="cmbTipoEvento" required>
+                <option value="">Seleccionar Estacionamiento</option>
+            </select>
+            -->
+            
+		      </h1>
+		      <ol class="breadcrumb">
+		        <li><a href="#inicio"><i class="fa fa-home"></i> Inicio</a></li>
+		        <!--<li class="active">Cambio de Clave</li>-->
+		      </ol>
+		    </section>
+	    
+	    
+        
+        <div id="line-dotted" style="padding-bottom:10px"></div>
+            
+        <form name="inicio" ng-model="inicio" ng-submit="cambioClave(inicio)" ng-validate="validaFormCambioClaveUsuario" novalidate>
+			
+            <br><br>
+           
+            <div id="menu"></div>
+            
+		        <div id="mensaje"></div>  
+		        
+		        
+		        
+		        
+		        <!-- Modal Usuario Files -->
+						<div class="modal fade" id="myUsuarioFiles" role="dialog">
+						  <div class="modal-dialog" id="mdialTamanio">
+						      <!-- Modal content-->
+						      <div class="modal-content">
+						      
+						          <div class="modal-header">
+						             <!-- <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+						              <h4 class="modal-title">Elija su Centro de Operación</h4>
+						          </div>
+						          
+						          <div class="modal-body">
+						          	
+												<div class="form-group">
+												    <div class="select-group">
+												        <label>Estacionamiento:</label>                                                                                 
+												        
+												        <!--
+												        <select ng-model="grupoFiles.ID_CENTRO_OPERACION" ng-options="item.ID_CENTRO_OPERACION as item.NOMBRE_CENTRO_OPERACION for item in centroOperaciones" class="form-control" name="cmbGrupoFile" id="cmbGrupoFile" ng-change="cargarFiles(grupoFiles.ID_CENTRO_OPERACION, usuario.IDUSUA)" required>
+												            <option value="">Seleccionar Estacionamiento</option>
+												        </select> 
+												        -->
+												        
+												        <select class="form-control" name="cmbLugarEvento" id="cmbLugarEvento">
+						                        <option value="0">Seleccionar Estacionamiento</option>
+						                        <option ng-selected="{{centroOperacion.ID_CENTRO_OPERACION == centroOperacionPorDefecto}}" ng:repeat="centroOperacion in centroOperacion" value="{{centroOperacion.ID_CENTRO_OPERACION}}">{{centroOperacion.NOMBRE_CENTRO_OPERACION}}</option>
+						                    </select>
+						                                                                           
+												    </div>  
+												</div>
+												  
+												<button type="button" class="btn btn-primary btn-block" ng-click="elegirCentroOperacion()">Aceptar</button>
+											
+											</div>
+						      </div>
+							</div>       
+						</div>
+						<!-- Fin Modal Perfiles-->
+				
+
+        </form>  
+                
+    </section>
+</body>
+</html>
